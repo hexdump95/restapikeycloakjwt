@@ -16,7 +16,7 @@ public class QuestionController {
     @GetMapping
     public List<Question> getAllQuestions() {
         return Arrays.asList(
-                new Question(1L, "What is the capital of Argentina?", new ArrayList<>()),
+                new Question(1L, "What is the capital of Argentina?", new ArrayList<>())
         );
     }
 }
