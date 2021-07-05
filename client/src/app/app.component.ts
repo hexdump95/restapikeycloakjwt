@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './login/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'client';
+
+  constructor(private readonly authService: AuthService) { }
+
+  login() {
+    this.authService.login()
+      .subscribe(
+        (res) => {
+          console.log(res.access_token);
+        });
+  }
+
 }
