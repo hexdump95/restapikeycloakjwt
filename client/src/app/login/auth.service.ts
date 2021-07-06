@@ -18,10 +18,10 @@ export class AuthService {
     return this.http.post<any>('http://localhost:8181/auth/realms/sergio/protocol/openid-connect/token',
       body, { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' }) })
       .subscribe((res) => {
-          localStorage.setItem("access_token", res.access_token);
-          localStorage.setItem("refresh_token", res.refresh_token);
-          this.router.navigate(['/']);
-        });
+        localStorage.setItem("access_token", res.access_token);
+        localStorage.setItem("refresh_token", res.refresh_token);
+        this.router.navigate(['/']);
+      });
   }
 
   logout() {
@@ -31,6 +31,23 @@ export class AuthService {
     localStorage.removeItem('refresh_token');
     return this.http.post<any>('http://localhost:8181/auth/realms/sergio/protocol/openid-connect/logout'
       , body, { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' }) });
+  }
+
+  refreshToken() {
+    const body =
+      `client_id=${this.client_id}&refresh_token=${this.getRefreshToken()}&grant_type=refresh_token`;
+
+    return this.http.post<any>('http://localhost:8181/auth/realms/sergio/protocol/openid-connect/token',
+      body, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': `Bearer ${this.getToken()}`
+        })
+    })
+      .subscribe((res) => {
+        localStorage.setItem("access_token", res.access_token);
+        localStorage.setItem("refresh_token", res.refresh_token);
+      });
   }
 
   getToken(): string | null {
