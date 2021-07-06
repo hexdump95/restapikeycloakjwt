@@ -18,4 +18,8 @@ export class AuthService {
       body, { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' }) });
   }
 
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
 }
