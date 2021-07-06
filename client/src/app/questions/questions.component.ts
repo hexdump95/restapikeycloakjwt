@@ -13,7 +13,6 @@ export class QuestionsComponent implements OnInit {
   constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('token'));
     this.questionService.findAll()
     .subscribe(questions => this.questions = questions);
   }

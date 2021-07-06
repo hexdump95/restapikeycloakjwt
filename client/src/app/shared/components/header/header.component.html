@@ -1,1 +1,8 @@
-<p>header works!</p>
+<div class="header">
+    <div class="space"></div>
+    <div *ngIf="isLoggedIn(); then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock><button (click)="logout()">logout</button></ng-template>
+    <ng-template #elseBlock><button (click)="login()">login</button></ng-template>
+    
+
+</div>

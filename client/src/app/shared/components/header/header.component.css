@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    position: relative;
+    background-color: rgba(0, 0, 0, 70%);
+    height: 20px;
+    place-items: center;
+    padding: 20px;
+}
+
+button {
+    color: white;
+    background-color: black;
+}
+
+.space {
+    flex: 1;
+}

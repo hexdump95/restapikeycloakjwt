@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { User } from './user';
 
@@ -12,7 +11,7 @@ import { User } from './user';
 export class LoginComponent implements OnInit {
   user: User = new User();
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService) {
     this.user.username = "username";
     this.user.password = "password";
   }
@@ -22,12 +21,7 @@ export class LoginComponent implements OnInit {
       username: form.value.username,
       password: form.value.password,
     }
-    this.authService.login(user)
-      .subscribe(
-        (res) => {
-          localStorage.setItem("token", res.access_token);
-          this.router.navigate(['/']);
-        });
+    this.authService.login(user);
     form.resetForm();
   }
 
