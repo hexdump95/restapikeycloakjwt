@@ -1,10 +1,24 @@
 .header {
     display: flex;
-    position: relative;
+    position: fixed;
+    inset: 0 0 0;
     background-color: rgba(0, 0, 0, 70%);
     height: 20px;
     place-items: center;
     padding: 20px;
+}
+
+.link {
+    text-decoration: none; 
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    font-size: 15px;
+    color: white;
+    text-shadow: 5px 5px 15px black;
+}
+
+.active {
+    font-size: 30px;
 }
 
 button {
