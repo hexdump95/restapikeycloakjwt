@@ -6,4 +6,4 @@ RUN mvn clean package -DskipTests
 FROM adoptopenjdk/openjdk11:alpine-jre
 COPY --from=builder app/target/api-*.jar app/app.jar
 WORKDIR /app
-CMD ["java", "-jar", "app.jar" ]
+CMD ["java", "-jar", "-Dspring.profiles.active=prod", "app.jar" ]
